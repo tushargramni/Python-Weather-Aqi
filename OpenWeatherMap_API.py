@@ -62,7 +62,17 @@ def Air_Pollution_API():
         return False
 
     air_quality= data.json()['list'][0];
-    print(f"Air Quality(AQI): {air_quality['main']['aqi']}")
+    aqi = int(air_quality['main']['aqi'])
+    aqi_status = {
+        1: "Good 😊",
+        2: "Fair 🙂",
+        3: "Moderate 😐",
+        4: "Poor 😷",
+        5: "Very Poor 🚨"
+    }
+
+    print(f"Air Quality(AQI): {aqi}")
+    print(f"Air Quality(AQI) Status: {aqi_status.get(aqi,'Unknown')}")
     print(f"Components: ")
     for key,value in air_quality['components'].items():
         print(f"{key}: {value}")
